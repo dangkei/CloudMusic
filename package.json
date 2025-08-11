@@ -1,0 +1,30 @@
+{
+  "name": "spotify-clone",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.12",
+    "lodash.debounce": "^4.0.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.8.0"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.4.13",
+    "vite": "^4.4.9"
+  }
+}
