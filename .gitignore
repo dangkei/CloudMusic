@@ -1,0 +1,38 @@
+# Node.js 依赖
+node_modules/
+
+# 构建输出
+dist/
+build/
+
+# 日志文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 环境变量文件（包含敏感信息）
+.env
+.env.local
+.env.*.local
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时缓存
+.cache/
+.temp/
+*.tmp
+
+# TypeScript 编译输出
+*.tsbuildinfo
+
+# 依赖锁定文件（如果你不想锁定）
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

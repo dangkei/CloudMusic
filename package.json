@@ -1,13 +1,8 @@
 {
-  "name": "spotify-clone",
+  "name": "cloudmusic",
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
   "dependencies": {
     "framer-motion": "^12.23.12",
     "lodash.debounce": "^4.0.8",
@@ -23,8 +18,17 @@
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.4.13",
     "vite": "^4.4.9"
+  },
+  "homepage": "https://dangkei.github.io/CloudMusic",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -t" 
   }
 }
