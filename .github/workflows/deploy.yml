@@ -11,26 +11,38 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # 升级到最新版本
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4 # 升级到最新版本
         with:
-          node-version: 22
+          node-version: 20 # 使用更稳定的 LTS 版本（22 可能存在兼容性问题）
+          cache: "npm" # 增加缓存加速依赖安装
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Chromium dependencies
-        run: sudo apt-get install -y libatk1.0-0 libatk-bridge2.0-0 libcups2 \
-          libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 \
-          libxrandr2 libgbm1 libasound2
+      - name: Update system and install dependencies
+        run: |
+          sudo apt-get update -y  # 先更新包索引
+          sudo apt-get install -y \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libdrm2 \
+            libxkbcommon0 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxfixes3 \
+            libxrandr2 \
+            libgbm1 \
+            libasound2t64  # 替换虚拟包为实际存在的包
 
       - name: Build project
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4 # 升级到最新版本
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
