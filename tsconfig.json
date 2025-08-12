@@ -10,11 +10,15 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",  // 关键修改
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",     // 新增
+    "types": ["vite/client"],       // 新增
+    "baseUrl": ".",                 // 新增
+    "paths": { "@/*": ["src/*"] }    // 新增（可选）
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
