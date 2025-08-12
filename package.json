@@ -17,6 +17,7 @@
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.31",
     "puppeteer": "^24.16.1",
     "tailwindcss": "^3.4.13",
@@ -27,6 +28,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "preview-gh": "vite preview --host --port 3000",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist -t",
     "screenshot": "node scripts/capture-screenshots.js"
