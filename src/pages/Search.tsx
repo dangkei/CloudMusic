@@ -14,29 +14,29 @@ export default function Search() {
         id: 1,
         title: "Believer",
         artist: "Imagine Dragons",
-        image: "/images/song1.jpeg",
-        audio: "/audio/song1.mp3"
+        image: "images/song1.jpeg",
+        audio: "audio/song1.mp3"
       },
       {
         id: 2,
         title: "Counting Stars",
         artist: "OneRepublic",
-        image: "/images/song2.jpeg",
-        audio: "/audio/song2.mp3"   
+        image: "images/song2.jpeg",
+        audio: "audio/song2.mp3"   
       },
       {
         id: 3,
         title: "Shape of You",
         artist: "Ed Sheeran", 
-        image: "/images/song3.jpeg",
-        audio: "/audio/song3.mp3"
+        image: "images/song3.jpeg",
+        audio: "audio/song3.mp3"
       },
       {
         id: 4,
         title: "Blinding Lights", 
         artist: "The Weeknd",
-        image: "/images/song4.jpeg",
-        audio: "/audio/song4.mp3"}
+        image: "images/song4.jpeg",
+        audio: "audio/song4.mp3"}
     ];
     const filtered = fakeSongs.filter((song) =>
       song.title.toLowerCase().includes(query.toLowerCase())
