@@ -8,7 +8,7 @@ import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/CloudMusic"
+    <BrowserRouter basename="/CloudMusic">
       <App />
     </BrowserRouter>
   </React.StrictMode>
