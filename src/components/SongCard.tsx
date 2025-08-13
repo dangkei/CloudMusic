@@ -1,5 +1,5 @@
 import React from "react";
-import { Song } from "../context/PlayerContext";
+import { Song } from "../contexts/PlayerContext";
 
 interface SongCardProps {
   song: Song;

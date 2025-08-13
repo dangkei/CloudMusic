@@ -1,9 +1,12 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import debounce from "lodash.debounce";
 import SearchBar from "./SearchBar";
-import { usePlayer, Song } from "../context/PlayerContext";
+import { usePlayer, Song } from "../contexts/PlayerContext";
+import { UserContext } from "../contexts/UserContext";
+import { useUser } from "../contexts/UserContext";
 
 export default function Navbar() {
+
   const { playSong } = usePlayer();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Song[]>([]);
@@ -60,10 +63,12 @@ export default function Navbar() {
     debouncedSearch(text); // 触发防抖搜索
   };
 
+  const { user, logout } = useContext(UserContext)!;
+
   return (
     <div className="flex items-center justify-between p-4 bg-gray-900 relative">
       {/* Logo */}
-      <h1 className="text-white text-xl font-bold">My Music App</h1>
+      <h1 className="text-white text-xl font-bold">SY Music</h1>
 
       {/* 搜索框 */}
       <div className="w-1/3">
@@ -95,6 +100,20 @@ export default function Navbar() {
             ))}
           </ul>
         </div>
+      )}
+      {/* 用户信息和退出按钮 */}
+      {user ? (
+        <div className="flex items-center gap-4">
+          <span>欢迎回来，{user.name}</span>
+          <button
+            onClick={logout}
+            className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+          >
+            退出
+          </button>
+        </div>
+      ) : (
+        <span>未登录</span>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SongCard from "../components/SongCard";
 import SearchBar from "../components/SearchBar";
-import { usePlayer, Song } from "../context/PlayerContext";
+import { usePlayer, Song } from "../contexts/PlayerContext";
 
 export default function Search() {
   const { playSong } = usePlayer();

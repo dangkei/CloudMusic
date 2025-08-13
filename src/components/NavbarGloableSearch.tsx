@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
-import { usePlayer, Song } from "../context/PlayerContext";
+import { usePlayer, Song } from "../contexts/PlayerContext";
 
 export default function Navbar() {
   const { playSong } = usePlayer();

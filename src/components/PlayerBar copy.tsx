@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaPlay, FaPause, FaStepForward, FaStepBackward } from "react-icons/fa";
-import { usePlayer } from "../context/PlayerContext";
+import { usePlayer } from "../contexts/PlayerContext";
 
 interface Song {
   id: number;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { usePlayer } from "../context/PlayerContext";
+import { usePlayer } from "../contexts/PlayerContext";
 
 // 假数据（你之后可以替换成 API 数据）
 const songData = [

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
-import { usePlayer } from "../context/PlayerContext";
+import { usePlayer } from "../contexts/PlayerContext";
+import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
 export default function PlayerBar() {
   const {
@@ -14,6 +15,8 @@ export default function PlayerBar() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+
+  const { volume, setVolume, isMuted, toggleMute } = usePlayer();
 
   useEffect(() => {
     if (audioRef.current && currentSong) {
@@ -41,6 +44,13 @@ export default function PlayerBar() {
     }
   };
 
+  useEffect(() => {
+  if (audioRef.current) {
+    audioRef.current.volume = isMuted ? 0 : volume;
+  }
+}, [volume, isMuted]);
+
+
   return (
     currentSong && (
       <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 flex items-center justify-between">
@@ -54,20 +64,6 @@ export default function PlayerBar() {
             <h4 className="font-bold">{currentSong.title}</h4>
             <p className="text-sm text-gray-400">{currentSong.artist}</p>
           </div>
-        </div>
-
-        {/* 中间：时间 & 进度条 */}
-        <div className="flex-1 px-6 flex items-center space-x-2">
-          <span className="text-sm">{formatTime(currentTime)}</span>
-          <input
-            type="range"
-            min="0"
-            max={duration}
-            value={currentTime}
-            onChange={handleSeek}
-            className="w-full"
-          />
-          <span className="text-sm">{formatTime(duration)}</span>
         </div>
 
         {/* 播放控制按钮 */}
@@ -93,7 +89,38 @@ export default function PlayerBar() {
           <button onClick={nextSong} className="px-3 py-2 bg-gray-700 rounded-full">
             ⏭
           </button>
+          {/* 音量控制 */}
+          {/* 静音按钮 */}
+      <button onClick={toggleMute} className="text-xl">
+        {isMuted || volume === 0 ? <FaVolumeMute /> : <FaVolumeUp />}
+      </button>
+
+      {/* 音量滑块 */}
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value={isMuted ? 0 : volume}
+        onChange={(e) => setVolume(parseFloat(e.target.value))}
+        className="w-24"
+      />
+      </div>
+
+        {/* 中间：时间 & 进度条 */}
+        <div className="flex-1 px-6 flex items-center space-x-2">
+          <span className="text-sm">{formatTime(currentTime)}</span>
+          <input
+            type="range"
+            min="0"
+            max={duration}
+            value={currentTime}
+            onChange={handleSeek}
+            className="w-full"
+          />
+          <span className="text-sm">{formatTime(duration)}</span>
         </div>
+
 
         {/* 隐藏的 audio 标签 */}
         <audio

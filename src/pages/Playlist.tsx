@@ -1,6 +1,6 @@
 import React from "react";
 import SongCard from "../components/SongCard";
-import { usePlayer, Song } from "../context/PlayerContext";
+import { usePlayer, Song } from "../contexts/PlayerContext";
 
 const playlistSongs: Song[] = [
   { id: 1, title: "Blinding Lights", artist: "The Weeknd", image: "images/song1.jpeg", audio: "audio/song1.mp3" },

@@ -1,7 +1,7 @@
 import React from 'react'
 import SongCard from '../components/SongCard'
-import { usePlayer } from "../context/PlayerContext";
-import { Song } from "../context/PlayerContext";
+import { usePlayer } from "../contexts/PlayerContext";
+import { Song } from "../contexts/PlayerContext";
 
 
 const Home = () => {

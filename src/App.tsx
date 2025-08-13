@@ -6,7 +6,8 @@ import Search from "./pages/Search";
 import Playlist from "./pages/Playlist";
 import SongDetails from "./pages/SongDetails";
 import PlayerBar from "./components/PlayerBar";
-import { PlayerProvider } from "./context/PlayerContext";
+import { PlayerProvider } from "./contexts/PlayerContext";
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
                 <Route path="/search" element={<Search />} />
                 <Route path="/playlist" element={<Playlist />} />
                 <Route path="/song/:id" element={<SongDetails />} />
+                <Route path="/login" element={<LoginPage />} />
               </Routes>
             </main>
           </div>

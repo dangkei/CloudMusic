@@ -5,3 +5,8 @@
 body {
   @apply bg-gray-900 text-white;
 }
+
+/* 音量滑块样式优化 */
+input[type="range"] {
+  accent-color: #22c55e; /* Tailwind green-500 */
+}

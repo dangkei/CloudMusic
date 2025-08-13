@@ -8,6 +8,8 @@ export interface Song {
   audio: string;
 }
 
+type PlayMode = 'loop' | 'single' | 'shuffle';
+
 interface PlayerContextType {
   currentSong: Song | null;
   isPlaying: boolean;
@@ -17,8 +19,16 @@ interface PlayerContextType {
   pauseSong: () => void;
   resumeSong: () => void;
   nextSong: () => void;
-  prevSong: () => void;
+  prevSong: () => void; 
+  togglePlayMode: () => void;  
+
+  // 新增音量控制相关方法和状态
+  volume: number;
+  isMuted: boolean;
+  setVolume: (value: number) => void;
+  toggleMute: () => void;
 }
+
 
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
 
@@ -68,6 +78,21 @@ export const PlayerProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const [volume, setVolume] = useState(1); // 1 = 100%
+  const [isMuted, setIsMuted] = useState(false);
+
+  const toggleMute = () => setIsMuted((prev) => !prev);
+
+  const [playMode, setPlayMode] = useState<PlayMode>('loop');
+
+  const togglePlayMode = () => {
+    setPlayMode((prev: PlayMode) => {
+      if (prev === 'loop') return 'single';
+      if (prev === 'single') return 'shuffle';
+      return 'loop';
+    });
+  };
+
   return (
     <PlayerContext.Provider
       value={{
@@ -80,6 +105,11 @@ export const PlayerProvider = ({ children }: { children: ReactNode }) => {
         resumeSong,
         nextSong,
         prevSong,
+        togglePlayMode,
+        volume,
+        isMuted,
+        setVolume,
+        toggleMute,
       }}
     >
       {children}
