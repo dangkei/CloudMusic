@@ -3,11 +3,41 @@ import SongCard from "../components/SongCard";
 import { usePlayer, Song } from "../contexts/PlayerContext";
 
 const playlistSongs: Song[] = [
-  { id: 1, title: "Blinding Lights", artist: "The Weeknd", image: "images/song1.jpeg", audio: "audio/song1.mp3" },
-  { id: 2, title: "Shape of You", artist: "Ed Sheeran", image: "/mages/song2.jpeg", audio: "audio/song2.mp3" },
-  { id: 3, title: "Someone Like You", artist: "Adele", image: "images/song3.jpeg", audio: "audio/song3.mp3" },
-  { id: 4, title: "Levitating", artist: "Dua Lipa", image: "images/song4.jpeg", audio: "audio/song4.mp3" },
-  { id: 5, title: "Circles", artist: "Post Malone", image: "images/song5.jpeg", audio: "audio/song5.mp3" },
+  {
+    id: 1,
+    title: "Blinding Lights",
+    artist: "The Weeknd",
+    image: "images/song1.jpeg",
+    audio: "audio/song1.mp3",
+  },
+  {
+    id: 2,
+    title: "Shape of You",
+    artist: "Ed Sheeran",
+    image: "images/song2.jpeg",
+    audio: "audio/song2.mp3",
+  },
+  {
+    id: 3,
+    title: "Someone Like You",
+    artist: "Adele",
+    image: "images/song3.jpeg",
+    audio: "audio/song3.mp3",
+  },
+  {
+    id: 4,
+    title: "Levitating",
+    artist: "Dua Lipa",
+    image: "images/song4.jpeg",
+    audio: "audio/song4.mp3",
+  },
+  {
+    id: 5,
+    title: "Circles",
+    artist: "Post Malone",
+    image: "images/song5.jpeg",
+    audio: "audio/song5.mp3",
+  },
 ];
 
 export default function Playlist() {

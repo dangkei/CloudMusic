@@ -7,11 +7,12 @@ import Playlist from "./pages/Playlist";
 import SongDetails from "./pages/SongDetails";
 import PlayerBar from "./components/PlayerBar";
 import { PlayerProvider } from "./contexts/PlayerContext";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/Login";
+import Settings from "./pages/Settings";
 
 export default function App() {
   return (
-<PlayerProvider>
+    <PlayerProvider>
       <div className="flex h-screen flex-col">
         <div className="flex flex-1">
           <Sidebar />
@@ -24,6 +25,8 @@ export default function App() {
                 <Route path="/playlist" element={<Playlist />} />
                 <Route path="/song/:id" element={<SongDetails />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/settings" element={<Settings />} />{" "}
+                {/* ✅ 新增 */}
               </Routes>
             </main>
           </div>

@@ -1,8 +1,24 @@
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import { usePlayer } from "../contexts/PlayerContext";
-import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+import {
+  FaPlay,
+  FaPause,
+  FaStepForward,
+  FaStepBackward,
+  FaRandom,
+  FaRedo,
+  FaVolumeUp,
+  FaVolumeMute,
+} from "react-icons/fa";
 
-export default function PlayerBar() {
+const formatTime = (time: number) => {
+  if (isNaN(time)) return "0:00";
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+};
+
+const PlayBar = () => {
   const {
     currentSong,
     isPlaying,
@@ -10,126 +26,95 @@ export default function PlayerBar() {
     resumeSong,
     nextSong,
     prevSong,
+    playMode,
+    togglePlayMode,
+    currentTime,
+    duration,
+    seekTo,
+    volume,
+    setVolume,
+    isMuted,
+    toggleMute,
   } = usePlayer();
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-
-  const { volume, setVolume, isMuted, toggleMute } = usePlayer();
-
-  useEffect(() => {
-    if (audioRef.current && currentSong) {
-      audioRef.current.src = currentSong.audio;
-      audioRef.current.play();
-    }
-  }, [currentSong]);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      isPlaying ? audioRef.current.play() : audioRef.current.pause();
-    }
-  }, [isPlaying]);
-
-  const formatTime = (time: number) => {
-    if (isNaN(time)) return "00:00";
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60).toString().padStart(2, "0");
-    return `${minutes}:${seconds}`;
-  };
-
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = Number(e.target.value);
-    }
-  };
-
-  useEffect(() => {
-  if (audioRef.current) {
-    audioRef.current.volume = isMuted ? 0 : volume;
-  }
-}, [volume, isMuted]);
-
+  if (!currentSong) return null;
 
   return (
-    currentSong && (
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <img
-            src={currentSong.image}
-            alt={currentSong.title}
-            className="w-14 h-14 object-cover rounded"
-          />
-          <div>
-            <h4 className="font-bold">{currentSong.title}</h4>
-            <p className="text-sm text-gray-400">{currentSong.artist}</p>
-          </div>
+    <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-3 flex items-center justify-between">
+      {/* 歌曲信息 */}
+      <div className="flex items-center space-x-4">
+        <img
+          src={currentSong.image}
+          alt={currentSong.title}
+          className="w-12 h-12 object-cover"
+        />
+        <div>
+          <p className="text-sm font-bold">{currentSong.title}</p>
+          <p className="text-xs text-gray-400">{currentSong.artist}</p>
         </div>
+      </div>
 
-        {/* 播放控制按钮 */}
-        <div className="flex items-center space-x-3">
-          <button onClick={prevSong} className="px-3 py-2 bg-gray-700 rounded-full">
-            ⏮
+      {/* 控制按钮 */}
+      <div className="flex flex-col items-center w-1/3">
+        <div className="flex items-center space-x-4">
+          <button onClick={togglePlayMode} title="切换播放模式">
+            {playMode === "shuffle" ? (
+              <FaRandom />
+            ) : playMode === "single" ? (
+              <FaRedo />
+            ) : (
+              <span>循环</span>
+            )}
+          </button>
+          <button onClick={prevSong}>
+            <FaStepBackward />
           </button>
           {isPlaying ? (
-            <button
-              onClick={pauseSong}
-              className="px-4 py-2 bg-green-500 rounded-full"
-            >
-              ❚❚
+            <button onClick={pauseSong}>
+              <FaPause />
             </button>
           ) : (
-            <button
-              onClick={resumeSong}
-              className="px-4 py-2 bg-green-500 rounded-full"
-            >
-              ▶
+            <button onClick={resumeSong}>
+              <FaPlay />
             </button>
           )}
-          <button onClick={nextSong} className="px-3 py-2 bg-gray-700 rounded-full">
-            ⏭
+          <button onClick={nextSong}>
+            <FaStepForward />
           </button>
-          {/* 音量控制 */}
-          {/* 静音按钮 */}
-      <button onClick={toggleMute} className="text-xl">
-        {isMuted || volume === 0 ? <FaVolumeMute /> : <FaVolumeUp />}
-      </button>
-
-      {/* 音量滑块 */}
-      <input
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
-        value={isMuted ? 0 : volume}
-        onChange={(e) => setVolume(parseFloat(e.target.value))}
-        className="w-24"
-      />
-      </div>
-
-        {/* 中间：时间 & 进度条 */}
-        <div className="flex-1 px-6 flex items-center space-x-2">
-          <span className="text-sm">{formatTime(currentTime)}</span>
-          <input
-            type="range"
-            min="0"
-            max={duration}
-            value={currentTime}
-            onChange={handleSeek}
-            className="w-full"
-          />
-          <span className="text-sm">{formatTime(duration)}</span>
         </div>
 
+        {/* 进度条 */}
+        <div className="flex items-center space-x-2 w-full">
+          <span className="text-xs">{formatTime(currentTime)}</span>
+          <input
+            type="range"
+            min={0}
+            max={duration || 0}
+            step={0.1}
+            value={currentTime}
+            onChange={(e) => seekTo(parseFloat(e.target.value))}
+            className="w-full"
+          />
+          <span className="text-xs">{formatTime(duration)}</span>
+        </div>
+      </div>
 
-        {/* 隐藏的 audio 标签 */}
-        <audio
-          ref={audioRef}
-          onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)}
-          onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)}
-          onEnded={nextSong} // 自动播放下一首
+      {/* 音量控制 */}
+      <div className="flex items-center space-x-2 w-36">
+        <button onClick={toggleMute}>
+          {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+        </button>
+        <input
+          type="range"
+          min={0}
+          max={1}
+          step={0.01}
+          value={isMuted ? 0 : volume}
+          onChange={(e) => setVolume(parseFloat(e.target.value))}
         />
       </div>
-    )
+    </div>
   );
-}
+};
+
+export default PlayBar;
