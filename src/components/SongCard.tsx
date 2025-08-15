@@ -1,5 +1,5 @@
-import React from "react";
-import { Song } from "../contexts/PlayerContext";
+import { Song } from "../types/Song";
+import { useNavigate } from "react-router-dom";
 
 interface SongCardProps {
   song: Song;
@@ -7,10 +7,11 @@ interface SongCardProps {
 }
 
 export default function SongCard({ song, onClick }: SongCardProps) {
+  const navigate = useNavigate();
   return (
     <div
       className="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 cursor-pointer"
-      onClick={onClick}
+      onClick={() => navigate(`/song/${song.id}`)}
     >
       <img
         src={song.image}

@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useContext } from "react";
 import debounce from "lodash.debounce";
 import SearchBar from "./SearchBar";
-import { usePlayer, Song } from "../contexts/PlayerContext";
+import { usePlayer } from "../contexts/PlayerContext";
 import { UserContext } from "../contexts/UserContext";
-import { useUser } from "../contexts/UserContext";
+import { Song } from "../types/Song";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {

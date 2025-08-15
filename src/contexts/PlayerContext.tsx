@@ -7,13 +7,7 @@ import React, {
   ReactNode,
 } from "react";
 
-export interface Song {
-  id: number;
-  title: string;
-  artist: string;
-  image: string;
-  audio: string;
-}
+import { Song } from "../types/Song";
 
 type PlayMode = "loop" | "single" | "shuffle";
 
