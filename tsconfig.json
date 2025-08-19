@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "react",     // 新增
+    "jsxImportSource": "react",     // 新增 
     "types": ["vite/client"],       // 新增
     "baseUrl": ".",                 // 新增
     "paths": { "@/*": ["src/*"] }    // 新增（可选）

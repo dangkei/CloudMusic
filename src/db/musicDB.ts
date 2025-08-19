@@ -6,6 +6,7 @@ export interface Song {
   artist: string;
   image: string;
   audio: string;
+  duration?: number; // 单位：秒
 }
 
 export interface Playlist {
@@ -13,14 +14,15 @@ export interface Playlist {
   name: string;
   songs: Song[];
 }
-
 class MusicDB extends Dexie {
-  playlists!: Table<Playlist, number>;
+  songs!: Dexie.Table<Song, number>;
+  playlists!: Dexie.Table<Playlist, number>;
 
   constructor() {
-    super("musicDB");
-    this.version(1).stores({
-      playlists: "++id,name" // 主键自增
+    super("MusicDB");
+    this.version(2).stores({
+      songs: "id, title, artist, duration", // 新增 duration
+      playlists: "id, name"
     });
   }
 }
