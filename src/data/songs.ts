@@ -6,8 +6,8 @@ const songs: Song[] = [
     id: 1,
     title: "夜空中最亮的星",
     artist: "逃跑计划",
-image: "/CloudMusic/images/song1.jpeg",  
-    audio: "/CloudMusic/audio/song1.mp3",
+image: "https://pub-4224473e360b4613b8662ff55888fa67.r2.dev/images/song1.jpeg",  
+    audio: "https://pub-4224473e360b4613b8662ff55888fa67.r2.dev/songs/song1.mp3",
   },
   {
     id: 2,

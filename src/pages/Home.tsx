@@ -1,6 +1,6 @@
 import SongCard from "../components/SongCard";
 import { usePlayer } from "../contexts/PlayerContext";
-import songs from "../data/songs"; // 你的歌曲数据
+import songs from "../data/songs.json"; // 你的歌曲数据
 
 const Home = () => {
   const baseUrl = import.meta.env.BASE_URL;

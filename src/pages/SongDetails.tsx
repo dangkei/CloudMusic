@@ -37,37 +37,6 @@ export default function SongDetails() {
         >
           ▶ 播放
         </button>
-
-        <button
-          className="bg-indigo-500 hover:bg-indigo-600 px-6 py-2 text-white font-medium rounded-full shadow-md transition"
-          onClick={() => {
-            const targetPlaylist = playlists[0]; // 默认加第一个
-            if (targetPlaylist) {
-              addSongToPlaylist(targetPlaylist.id, song);
-              alert(`已加入到歌单：${targetPlaylist.name}`);
-            }
-          }}
-        >
-          ➕ 加入歌单
-        </button>
-      </div>
-
-      {/* 歌单选择下拉 */}
-      <div className="mt-4 flex justify-center">
-        <select
-          onChange={(e) => addSongToPlaylist(Number(e.target.value), song)}
-          className="bg-gray-800 border border-gray-700 px-4 py-2 rounded-full shadow-sm text-white focus:ring-2 focus:ring-indigo-400"
-        >
-          <option className="bg-gray-800">选择歌单</option>
-          {playlists.map((pl) => (
-            <option key={pl.id} value={pl.id} className="bg-gray-800">
-              {pl.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="relative">
         <select
           onChange={(e) => {
             if (e.target.value) {
