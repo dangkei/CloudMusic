@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { usePlaylists } from "../contexts/PlaylistContext";
 import { usePlayer } from "../contexts/PlayerContext";
-import songs from "../data/songs"; // 你的歌曲数据
+import songs from "../data/songs.json"; // 你的歌曲数据
+import LyricDisplay from "../components/LyricDisplay";
 
 export default function SongDetails() {
   const { id } = useParams();
@@ -54,14 +55,11 @@ export default function SongDetails() {
         </select>
       </div>
 
-      <div className="mt-8 p-4 bg-gray-800 rounded-lg h-64 overflow-y-auto shadow-inner">
-        <p className="text-center text-gray-400">🎵 歌词将在这里滚动显示...</p>
-      </div>
-
       {/* 滚动歌词区域占位 */}
       <div className="mt-8 bg-gray-900 rounded-lg shadow-inner p-4 h-48 overflow-y-auto text-center text-gray-400">
         <p className="italic">
           🎵 滚动歌词显示区域（后续可替换为动态歌词组件） 🎵
+          <LyricDisplay lyrics={song.artist} />
         </p>
       </div>
     </div>

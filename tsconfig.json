@@ -20,6 +20,6 @@
     "baseUrl": ".",                 // 新增
     "paths": { "@/*": ["src/*"] }    // 新增（可选）
   },
-  "include": ["src"],
+  "include": ["src", "upload.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

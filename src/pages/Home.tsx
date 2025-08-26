@@ -1,9 +1,18 @@
 import SongCard from "../components/SongCard";
 import { usePlayer } from "../contexts/PlayerContext";
-import songs from "../data/songs.json"; // 你的歌曲数据
+import React, { useEffect, useState } from "react";
+
+import { fetchSongs } from "../data/fetchSongs";
 
 const Home = () => {
   const baseUrl = import.meta.env.BASE_URL;
+
+  const [songs, setSongs] = useState([]);
+
+  useEffect(() => {
+    fetchSongs().then(setSongs).catch(console.error);
+  }, []);
+
   const { playSong } = usePlayer();
 
   return (

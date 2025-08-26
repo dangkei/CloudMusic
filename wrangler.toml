@@ -1,0 +1,6 @@
+name = "cloudmusic"
+pages_build_output_dir = "dist"   # Vite build 输出目录
+
+[vars]
+# 这里配置后端 Worker API 地址，前端 fetchSongs 会用到
+VITE_API_URL = "cloudmusic-admin.dangkei.workers.dev"
